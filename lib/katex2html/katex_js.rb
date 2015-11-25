@@ -1,5 +1,4 @@
 module Katex2HTML
-  class Katex
-
+  module KatexJS
   end
 end
