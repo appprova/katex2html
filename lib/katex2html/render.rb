@@ -6,14 +6,14 @@ module Katex2HTML
     end
 
     def render(latex)
-      context.eval("katex.renderToString('#{clean_latex(latex)}', {displayMode: true})")
+      context.call("katex.renderToString", latex)
     end
 
     private
 
-    def clean_latex(latex)
-      latex.gsub("\n", ' ')
-    end
+    # def clean_latex(latex)
+      # latex.gsub("\n", ' ')
+    # end
 
     def context
       @context ||= ExecJS.compile(source)
