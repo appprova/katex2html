@@ -3,8 +3,6 @@ require "katex2html/parser"
 require "katex2html/render"
 
 module Katex2HTML
-  HTML_LATEX = "<p>Considere a, b e c números reais maiores que 1, tais que $log_{ba} = 2$ e $log_{bc} = 3$. O valor da expressão:</p><p>$log_c (a.c) + 3log_c b - 2log_c \\left(\\dfrac{a}{b}\\right)$ é:</p>"
-
   def self.render(to_convert, options = {})
     options = default_opts.merge(options)
     send(options[:renderer], to_convert, options)
