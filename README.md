@@ -1,8 +1,6 @@
-# Katex2html
+# Katex2HTML
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/katex2html`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+An easy way to render [Katex](https://github.com/Khan/KaTeX) maths in Ruby.
 
 ## Installation
 
@@ -22,7 +20,40 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To render strings into Katex HTML rendered maths, just use the method below:
+
+```ruby
+Katex2HTML.render(string, options)
+```
+
+### Options
+
+You can provide  options as the last argument to `Katex2HTML.render`. Available options are:
+
+* `renderer` : `symbol`. If `:html` parse an HTML file looking for matching patterns, convert the math and return a HTML with Katex rendered `string`. If `:single` render a single formule and returns an Katex rendered HTML `string`. (default `:single`)
+* ~~`pattern` : `regex`. To be created.~~
+
+#### Single
+
+To render a specific math formule, you can use:
+
+```ruby
+# Single formule
+formule = "log_c (a.c) + 3log_c b - 2log_c \\left(\\dfrac{a}{b}\\right)"
+
+Katex2HTML.render(formule, :single) # Returns Katex HTML rendered
+```
+
+#### HTML
+
+To parse all latex from an HTML string, you can just:
+
+```ruby
+# HTML with formules between `$`
+mathHtml = "<p>Math below:</p><p>$log_c (a.c) + 3log_c b - 2log_c \\left(\\dfrac{a}{b}\\right)$</p>"
+
+Katex2HTML.render(latex_html, :html) # Returns HTML with Katex HTML rendered
+```
 
 ## Development
 
@@ -32,7 +63,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/katex2html. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/appprova/katex2html. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
