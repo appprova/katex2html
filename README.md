@@ -1,6 +1,6 @@
 # Katex2HTML
 
-An easy way to render [Katex](https://github.com/Khan/KaTeX) maths in Ruby.
+An easy way to convert LaTeX formules into [Katex](https://github.com/Khan/KaTeX) HTML using Ruby.
 
 ## Installation
 
