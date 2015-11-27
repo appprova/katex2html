@@ -5,15 +5,7 @@ require "katex2html/render"
 module Katex2HTML
   def self.render(to_convert, options = {})
     options = default_opts.merge(options)
-    send(options[:renderer], to_convert, options)
-  end
-
-  def self.html(html_body, options)
-    Parser.new(html_body).parse
-  end
-
-  def self.single(latex, options)
-    Render.new.render(latex)
+    send("render_#{options[:renderer]}", to_convert, options)
   end
 
   private
@@ -21,5 +13,13 @@ module Katex2HTML
     {
       renderer: :single
     }
+  end
+
+  def self.render_html(html_body, _options)
+    Parser.new(html_body).parse
+  end
+
+  def self.render_single(latex, _options)
+    Render.new.render(latex)
   end
 end
