@@ -1,16 +1,22 @@
 require 'spec_helper'
 
 describe Katex2HTML::Renderer do
-  let(:latex) { "log_{ab}" }
+  let(:valid_latex) { "log_{ab}" }
+  let(:invalid_latex) { "$log_{ab}$" }
   let(:renderer) { Katex2HTML::Renderer.new }
 
   describe '#render' do
-    context 'with valid arguments' do
+    context 'with valid latex' do
       it 'renders latex formule into Katex HTML' do
-        rendered = renderer.render(latex)
+        rendered = renderer.render(valid_latex)
 
-        expect(rendered).to_not eq(latex)
+        expect(rendered).to_not eq(valid_latex)
         expect(rendered).to include('katex')
+      end
+    end
+    context 'with invalid latex' do
+      it 'raises ExecJS::ProgramError' do
+        expect { renderer.render(invalid_latex) }.to raise_error(ExecJS::ProgramError)
       end
     end
 
