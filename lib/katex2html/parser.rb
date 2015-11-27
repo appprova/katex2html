@@ -3,7 +3,7 @@ module Katex2HTML
     def initialize(html, options = {})
       @options = default_opts.merge(options)
       @html = html
-      @render = Render.new
+      @render = Renderer.new
     end
 
     def parse
@@ -15,14 +15,14 @@ module Katex2HTML
       end
     end
 
+    private
+
     def each_regex
       @options[:regex].each do |rx|
         regex = "#{Regexp.escape(rx[0])}+(.*?)#{Regexp.escape(rx[1])}+"
         return yield(regex, rx[0], rx[1])
       end
     end
-
-    private
 
     def default_opts
       {
