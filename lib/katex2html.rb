@@ -1,6 +1,6 @@
 require "katex2html/version"
 require "katex2html/parser"
-require "katex2html/render"
+require "katex2html/renderer"
 
 module Katex2HTML
   def self.render(to_convert, options = {})
@@ -20,6 +20,6 @@ module Katex2HTML
   end
 
   def self.render_single(latex, _options)
-    Render.new.render(latex)
+    Renderer.new.render(latex)
   end
 end
