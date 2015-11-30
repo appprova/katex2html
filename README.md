@@ -1,6 +1,6 @@
 # Katex2HTML
 
-[![Build Status](https://travis-ci.org/appprova/katex2html.svg?branch=master)](https://travis-ci.org/appprova/katex2html) [![Code Climate](https://codeclimate.com/github/appprova/katex2html/badges/gpa.svg)](https://codeclimate.com/github/appprova/katex2html) [![Test Coverage](https://codeclimate.com/github/appprova/katex2html/badges/coverage.svg)](https://codeclimate.com/github/appprova/katex2html/coverage)
+[![Gem Version](https://badge.fury.io/rb/katex2html.svg)](https://badge.fury.io/rb/katex2html) [![Build Status](https://travis-ci.org/appprova/katex2html.svg?branch=master)](https://travis-ci.org/appprova/katex2html) [![Code Climate](https://codeclimate.com/github/appprova/katex2html/badges/gpa.svg)](https://codeclimate.com/github/appprova/katex2html) [![Test Coverage](https://codeclimate.com/github/appprova/katex2html/badges/coverage.svg)](https://codeclimate.com/github/appprova/katex2html/coverage)
 
 An easy way to convert LaTeX formules into [Katex](https://github.com/Khan/KaTeX) HTML using Ruby.
 
