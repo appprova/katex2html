@@ -3,13 +3,13 @@ module Katex2HTML
     def initialize(html, options = {})
       @options = default_opts.merge(options)
       @html = html
-      @render = Renderer.new
+      @render = Renderer.new(options)
     end
 
     def parse
-      each_regex do |regex, pre, pos|
-        @html.gsub Regexp.new(regex, Regexp::MULTILINE) do |v|
-          latex = v.gsub(pre, '').gsub(pos, '')
+      each_delimiter do |regex, pre, pos|
+        @html = @html.gsub Regexp.new(regex, Regexp::MULTILINE) do |match|
+          latex = match.gsub(pre, '').gsub(pos, '')
           @render.render(latex)
         end
       end
@@ -17,16 +17,18 @@ module Katex2HTML
 
     private
 
-    def each_regex
-      @options[:regex].each do |rx|
+    def each_delimiter
+      parsed_html = ""
+      @options[:delimiters].each do |rx|
         regex = "#{Regexp.escape(rx[0])}+(.*?)#{Regexp.escape(rx[1])}+"
-        return yield(regex, rx[0], rx[1])
+        parsed_html = yield(regex, rx[0], rx[1])
       end
+      parsed_html
     end
 
     def default_opts
       {
-        regex: [ ['$', '$'] ],
+        delimiters: [ ['$', '$'], ['\\[', '\\]'] ],
         process_escapes: true
       }
     end

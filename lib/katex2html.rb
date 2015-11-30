@@ -15,11 +15,11 @@ module Katex2HTML
     }
   end
 
-  def self.render_html(html_body, _options)
-    Parser.new(html_body).parse
+  def self.render_html(html_body, options = {})
+    Parser.new(html_body, options).parse
   end
 
-  def self.render_single(latex, _options)
-    Renderer.new.render(latex)
+  def self.render_single(latex, options = {})
+    Renderer.new(options).render(latex)
   end
 end

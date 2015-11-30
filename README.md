@@ -31,9 +31,11 @@ Katex2HTML.render(string, options)
 You can provide  options as the last argument to `Katex2HTML.render`. Available options are:
 
 * `renderer` : `symbol`. If `:html` parse an HTML file looking for matching patterns, convert the math and return a HTML with Katex rendered `string`. If `:single` render a single formule and returns an Katex rendered HTML `string`. (default `:single`)
-* ~~`pattern` : `regex`. To be created.~~
+* `delimiters` : `array`. You can send an array with custom delimiters to customize the parser patterns. (default: `[ ['$', '$'], ['\\[', '\\]'] ]`)
 
-#### Single
+#### Renderer
+
+##### Single
 
 To render a specific math formule, you can use:
 
@@ -41,10 +43,10 @@ To render a specific math formule, you can use:
 # Single formule
 formule = "log_c (a.c) + 3log_c b - 2log_c \\left(\\dfrac{a}{b}\\right)"
 
-Katex2HTML.render(formule, :single) # Returns Katex HTML rendered
+Katex2HTML.render(formule, renderer: :single) # Returns Katex HTML rendered
 ```
 
-#### HTML
+##### HTML
 
 To parse all latex from an HTML string, you can just:
 
@@ -52,7 +54,18 @@ To parse all latex from an HTML string, you can just:
 # HTML with formules between `$`
 mathHtml = "<p>Math below:</p><p>$log_c (a.c) + 3log_c b - 2log_c \\left(\\dfrac{a}{b}\\right)$</p>"
 
-Katex2HTML.render(latex_html, :html) # Returns HTML with Katex HTML rendered
+Katex2HTML.render(latex_html, renderer: :html) # Returns HTML with Katex HTML rendered
+```
+
+#### Delimiters
+
+You can send an array with custom delimiters
+
+```ruby
+# HTML with formules between `BOF` and `EOF`
+mathHtml = "<p>Math below:</p><p>BOFlog_c (a.c) + 3log_c b - 2log_c \\left(\\dfrac{a}{b}\\right)EOF</p>"
+
+Katex2HTML.render(latex_html, delimiters: ['BOF', 'EOF'], renderer: :html) # Returns HTML with Katex HTML rendered
 ```
 
 ## Development

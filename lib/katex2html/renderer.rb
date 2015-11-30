@@ -2,7 +2,7 @@ require "execjs"
 
 module Katex2HTML
   class Renderer
-    def initialize
+    def initialize(_options = {})
     end
 
     def render(latex)
