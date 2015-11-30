@@ -19,11 +19,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency 'execjs', '~> 2.4', '>= 2.4.0'
+  spec.add_runtime_dependency 'execjs', '~> 2.6', '>= 2.6.0'
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "rspec", "~> 3.4"
-  spec.add_development_dependency "codeclimate-test-reporter", "~> 0.5"
+  spec.add_development_dependency "codeclimate-test-reporter", "~> 0.4"
 end
