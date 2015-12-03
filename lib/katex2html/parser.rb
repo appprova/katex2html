@@ -20,7 +20,7 @@ module Katex2HTML
     def each_delimiter
       parsed_html = ""
       @options[:delimiters].each do |rx|
-        regex = "#{Regexp.escape(rx[0])}+(.*?)#{Regexp.escape(rx[1])}+"
+        regex = "([^\\\\]#{Regexp.escape(rx[0])}+)(.*?)([^\\\\]#{Regexp.escape(rx[1])}+)"
         parsed_html = yield(regex, rx[0], rx[1])
       end
       parsed_html

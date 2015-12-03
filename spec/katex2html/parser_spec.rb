@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Katex2HTML::Parser do
   let(:html_with_latex) { "<p>$log_{ab}$ and $log_{bc}$</p>" }
   let(:html_without_latex) { "<p>only text</p>" }
+  let(:html_with_money) { "<p>only text with U\\$20 and R\\$500,00</p>" }
 
   describe '#initialize' do
     it 'expects html param to initialize' do
@@ -45,6 +46,12 @@ describe Katex2HTML::Parser do
       it 'parses a HTML and returns original file' do
         parsed_html = Katex2HTML::Parser.new(html_without_latex).parse
         expect(parsed_html).to eq(html_without_latex)
+      end
+    end
+    context 'when HTML contains escaped currency symbol ($)' do
+      it 'does not generate Katex rendered content' do
+        parsed_html = Katex2HTML::Parser.new(html_with_money).parse
+        expect(parsed_html).to_not include('class="katex"')
       end
     end
   end
