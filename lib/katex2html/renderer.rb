@@ -16,7 +16,7 @@ module Katex2HTML
     end
 
     def source
-      @source ||= File.read(File.join([Dir.pwd, 'vendor', 'katex.min.js']))
+      @source ||= File.read(File.expand_path("../../../vendor/katex.min.js", __FILE__))
     end
   end
 end
