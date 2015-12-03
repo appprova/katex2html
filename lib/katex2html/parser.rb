@@ -7,15 +7,25 @@ module Katex2HTML
     end
 
     def parse
-      each_delimiter do |regex, pre, pos|
-        @html = @html.gsub Regexp.new(regex, Regexp::MULTILINE) do |match|
-          latex = match.gsub(pre, '').gsub(pos, '')
-          @render.render(latex)
-        end
+      each_delimiter do |*args|
+        @html = convert_latex_to_katex(*args)
+        @html = process_escapes(*args) if @options[:process_escapes]
+        @html
       end
     end
 
     private
+
+    def process_escapes(regex, pre, pos)
+      @html.gsub("\\#{pre}",pre).gsub("\\#{pos}",pos)
+    end
+
+    def convert_latex_to_katex(regex, pre, pos)
+      @html = @html.gsub Regexp.new(regex, Regexp::MULTILINE) do |match|
+        latex = match.gsub(pre, '').gsub(pos, '')
+        @render.render(latex)
+      end
+    end
 
     def each_delimiter
       parsed_html = ""
