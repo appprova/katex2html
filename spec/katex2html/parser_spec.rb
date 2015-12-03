@@ -54,5 +54,11 @@ describe Katex2HTML::Parser do
         expect(parsed_html).to_not include('class="katex"')
       end
     end
+    context 'when HTML needs to proccess escapes' do
+      it 'escapes delimiters removing backslashs' do
+        parsed_html = Katex2HTML::Parser.new(html_with_money).parse
+        expect(parsed_html).to eq(html_with_money.gsub(/\\/, ''))
+      end
+    end
   end
 end
